@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Input;
-using Microsoft.Azure.CognitiveServices.Vision.CustomVision.Prediction;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
 using MvvmHelpers;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -28,9 +28,9 @@ namespace SausageRecognizer.ViewModels
 
         public ICommand TakePhotoCommand { get; }
         public ICommand PickPhotoCommand { get; }
-        public ICommand PredictCommand { get; }
+        public ICommand SendPhotoCommand { get; }
 
-        private readonly PredictionEndpoint predictionEndpoint;
+        private readonly CloudStorageAccount storageAccount;
 
         public MainViewModel()
         {
@@ -52,23 +52,25 @@ namespace SausageRecognizer.ViewModels
                 DisplayPhoto();
             });
 
-            predictionEndpoint = new PredictionEndpoint
-            {
-                ApiKey = Constants.CustomVisionPredictionKey
-            };
+            storageAccount = CloudStorageAccount.Parse(Constants.StorageConnectionString);
 
-            PredictCommand = new Command(async () =>
+            SendPhotoCommand = new Command(async () =>
             {
                 IsBusy = true;
 
-                var result = await predictionEndpoint.PredictImageAsync(Guid.Parse(Constants.CustomVisionProjectId), file.GetStream());
+                Guid recordId = Guid.NewGuid();
 
-                string message = string.Join(Environment.NewLine,
-                    result.Predictions
-                        .OrderByDescending(p => p.Probability)
-                        .Select(p => $"{p.TagName} : {p.Probability * 100}%"));
+                var blobClient = storageAccount.CreateCloudBlobClient();
+                var container = blobClient.GetContainerReference(Constants.StorageContainerName);
+                var blockBlob = container.GetBlockBlobReference(recordId.ToString());
+                await blockBlob.UploadFromStreamAsync(file.GetStream());
 
-                await Application.Current.MainPage.DisplayAlert("Information", message, "OK");
+                // notify through queue
+                var queueClient = storageAccount.CreateCloudQueueClient();
+                var queue = queueClient.GetQueueReference(Constants.StorageQueueName);
+                await queue.AddMessageAsync(new CloudQueueMessage(recordId.ToString()));
+
+                await Application.Current.MainPage.DisplayAlert("Information", "Your photo has been sent!", "OK");
 
                 IsBusy = false;
             });

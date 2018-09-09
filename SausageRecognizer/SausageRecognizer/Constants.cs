@@ -9,5 +9,11 @@ namespace SausageRecognizer
         public static string CustomVisionPredictionKey = "";
 
         public static string CustomVisionProjectId = "";
+
+        public static string StorageConnectionString = "";
+
+        public static string StorageContainerName = "sausage-container";
+
+        public static string StorageQueueName = "sausage-queue";
     }
 }

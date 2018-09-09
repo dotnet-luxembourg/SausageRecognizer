@@ -7,7 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SausageRecognizer.Android",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SausageRecognizer.iOS", "SausageRecognizer\SausageRecognizer.iOS\SausageRecognizer.iOS.csproj", "{C6C7842F-0EF0-48F0-A28A-7370961E1B67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SausageRecognizer", "SausageRecognizer\SausageRecognizer\SausageRecognizer.csproj", "{24A7325D-3514-457D-BDEC-50E44AE8A52B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SausageRecognizer", "SausageRecognizer\SausageRecognizer\SausageRecognizer.csproj", "{24A7325D-3514-457D-BDEC-50E44AE8A52B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{0B5A3FA2-3B1F-404E-A94F-C6ADFDADBDDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Function", "Function", "{42F55B7E-6F0D-45E5-B49E-89259995EF5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SausageRecognitionFunction", "SausageRecognitionFunction\SausageRecognitionFunction.csproj", "{4A64D480-5287-4FC5-A5A9-B44D8A391CED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -133,9 +139,39 @@ Global
 		{24A7325D-3514-457D-BDEC-50E44AE8A52B}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{24A7325D-3514-457D-BDEC-50E44AE8A52B}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{24A7325D-3514-457D-BDEC-50E44AE8A52B}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Ad-Hoc|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Ad-Hoc|Any CPU.Build.0 = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Ad-Hoc|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.AppStore|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.AppStore|Any CPU.Build.0 = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.AppStore|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Release|iPhone.Build.0 = Release|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{73E9A82F-C16D-4089-9F71-EC0EE5A53FF8} = {0B5A3FA2-3B1F-404E-A94F-C6ADFDADBDDE}
+		{C6C7842F-0EF0-48F0-A28A-7370961E1B67} = {0B5A3FA2-3B1F-404E-A94F-C6ADFDADBDDE}
+		{24A7325D-3514-457D-BDEC-50E44AE8A52B} = {0B5A3FA2-3B1F-404E-A94F-C6ADFDADBDDE}
+		{4A64D480-5287-4FC5-A5A9-B44D8A391CED} = {42F55B7E-6F0D-45E5-B49E-89259995EF5C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A3108A4-9693-4B1A-8E15-8193D06B7366}

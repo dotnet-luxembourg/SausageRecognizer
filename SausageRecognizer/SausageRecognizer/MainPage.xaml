@@ -39,8 +39,8 @@
 
         <Button Grid.Row="2" 
                 Grid.ColumnSpan="2" 
-                Text="What is it?" 
-                Command="{Binding PredictCommand}" 
+                Text="Send Photo" 
+                Command="{Binding SendPhotoCommand}" 
                 IsEnabled="{Binding IsNotBusy}"/>
     </Grid>
 
