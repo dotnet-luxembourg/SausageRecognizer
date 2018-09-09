@@ -19,16 +19,24 @@ namespace SausageRecognitionFunction
         public static async Task Run(
             [QueueTrigger("sausage-queue")]string recordId,
             [Blob("sausage-container/{queueTrigger}", FileAccess.Read)] Stream image,
+            [CosmosDB(databaseName: "sausageData", collectionName: "sausages", ConnectionStringSetting = "CosmosDBConnection")] IAsyncCollector<Sausage> sausageData,
             TraceWriter log)
         {
             log.Info($"C# Queue trigger function processed: {recordId}");
 
             var result = await predictionEndpoint.PredictImageAsync(Guid.Parse(Environment.GetEnvironmentVariable("CustomVisionProjectId")), image);
 
-            string message = string.Join(Environment.NewLine,
-                result.Predictions
-                    .OrderByDescending(p => p.Probability)
-                    .Select(p => $"{p.TagName} : {p.Probability * 100}%"));
+            var predictions = result.Predictions
+                .OrderByDescending(p => p.Probability)
+                .Select(p => $"{p.TagName} : {p.Probability * 100}%");
+
+            await sausageData.AddAsync(new Sausage
+            {
+                Id = recordId,
+                Description = result.Predictions.OrderByDescending(p => p.Probability).Select(p => p.TagName).FirstOrDefault()
+            });
+
+            var message = string.Join(Environment.NewLine, predictions);
 
             log.Info(message);
         }
