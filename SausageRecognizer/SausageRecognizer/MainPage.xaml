@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SausageRecognizer"
+             xmlns:vm="clr-namespace:SausageRecognizer.ViewModels"
+             x:Class="SausageRecognizer.MainPage">
+             
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Text="Take Photo"
+                Command="{Binding TakePhotoCommand}" />
+
+        <Button Grid.Column="1" 
+                Text="Pick Photo" 
+                Command="{Binding PickPhotoCommand}" />
+
+        <Image Grid.Row="1" 
+               Grid.ColumnSpan="2" 
+               Source="{Binding ImageSource}" />
+
+        <ActivityIndicator Grid.Row="1" 
+                           Grid.ColumnSpan="2" 
+                           Color="White" 
+                           IsVisible="{Binding IsBusy}"/>
+
+        <Button Grid.Row="2" 
+                Grid.ColumnSpan="2" 
+                Text="What is it?" 
+                Command="{Binding PredictCommand}" 
+                IsEnabled="{Binding IsNotBusy}"/>
+    </Grid>
+
+</ContentPage>
